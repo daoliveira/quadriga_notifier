@@ -1,0 +1,11 @@
+#twilio account (for sms message)
+twilio:
+    account_sid:
+    auth_token:
+    to:
+    from:
+
+#notification daemon
+daemon:
+    wait_minutes: 1
+
