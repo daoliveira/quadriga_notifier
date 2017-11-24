@@ -52,7 +52,7 @@ class Data(object):
 
     def delete(self, notification_id):
         self.conn = connect("db")
-        self.conn.execute(f"delete from notification where id={str(notification_id)}")
+        self.conn.execute("delete from notification where id=?", (notification_id))
         self.conn.commit()
         self.conn.close()
 

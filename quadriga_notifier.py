@@ -20,7 +20,7 @@ def status():
     if notification_worker.active:
         with open("notification_worker") as file:
             last_run = file.readline()
-            print(f"Notification service enabled. Last run: {last_run}")
+            print("Notification service enabled. Last run: " + last_run)
     else:
         print("Notification service disabled")
 
@@ -59,8 +59,8 @@ def list_notifications():
         return
     print("ID     Trigger            Created")
     print("==     =======            =======")
-    for notification in notifications:
-        print("%s      %s %s %s      %s" % notification[:5])
+    for n in notifications:
+        print("%s      %s %s %s      %s" % (n[0], n[1], n[2], n[3], n[4]))
 
 
 def remove_notification(command):
@@ -85,7 +85,7 @@ def help(command):
     # 'help something' entered
     if tokens[1] == "notify":
         print("Creates a notification.")
-        print(f"Usage: > notify [{'|'.join(QuadrigaClient.order_books)}] [<|>|<=|>=|==|<>|!=] [value]")
+        print("Usage: > notify [%s] [<|>|<=|>=|==|<>|!=] [value]" % ("|".join(QuadrigaClient.order_books)))
         print("Example: > notify btc_cad <= 8540.25")
     elif tokens[1] == "list":
         print("Lists pending notifications. Usage: > list")

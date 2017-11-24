@@ -49,7 +49,7 @@ def worker():
                 pair = [x.upper() for x in book.split("_")]
 
                 # msg ex: 1BTC = 10243.67CAD on 2017-11-21 21:13:17, triggered by btc_cad<=10250
-                msg = f"1{pair[0]} = {str(last)}{pair[1]} on {when}, triggered by {book}{comp}{str(notification_value)}"
+                msg = "1%s = %s%s on %s, triggered by %s%s%s" % (pair[0], last, pair[1], when, book, comp, notification_value)
                 sid = sms_client.send_message(msg)
 
                 # update notification in the db
