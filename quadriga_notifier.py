@@ -1,28 +1,8 @@
 from quadriga import QuadrigaClient
 from db import Data
 import re
-import notification_worker
 
 data = Data()
-
-
-def start():
-    notification_worker.start()
-    print("Notification service enabled")
-
-
-def stop():
-    notification_worker.stop()
-    print("Notification service disabled")
-
-
-def status():
-    if notification_worker.active:
-        with open("notification_worker") as file:
-            last_run = file.readline()
-            print("Notification service enabled. Last run: " + last_run)
-    else:
-        print("Notification service disabled")
 
 
 def add_notification(command):
@@ -92,12 +72,6 @@ def help(command):
     elif tokens[1] == "remove":
         print("Removes pending notification. Usage: > remove [id]")
         print("Example: > remove 5")
-    elif tokens[1] == "start":
-        print("Starts notification service. Usage: > start")
-    elif tokens[1] == "stop":
-        print("Stops notification service. Usage: > stop")
-    elif tokens[1] == "status":
-        print("Show notification service status. Usage: > status")
     elif tokens[1] == "quit" or tokens[1] == "exit":
         print("Exits QuadrigaCX Notifications and stops notification service")
     else:
@@ -111,12 +85,6 @@ def main():
         command = input("> ").strip()
         if command == "quit" or command == "exit":
             break
-        elif command == "start":
-            start()
-        elif command == "stop":
-            stop()
-        elif command == "status":
-            status()
         elif command[:6] == "notify":
             add_notification(command)
         elif command == "list":
@@ -126,7 +94,7 @@ def main():
         elif command[:4] == "help":
             help(command)
         else:
-            print("Available commands: help|notify|list|remove|start|stop|status|quit|exit")
+            print("Available commands: help|notify|list|remove|quit|exit")
 
 
 if __name__ == '__main__':
