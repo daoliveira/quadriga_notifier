@@ -80,7 +80,6 @@ def help(command):
 
 def main():
     print("QuadrigaCX Notifications. Type 'help' to learn about available commands.")
-    print("Type 'start' to start notification service. ")
     while True:
         command = input("> ").strip()
         if command == "quit" or command == "exit":

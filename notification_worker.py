@@ -7,7 +7,7 @@ from db import Data
 import sms_client
 import logging as log
 
-log.basicConfig(filename="notification_worker.log", level=log.DEBUG,
+log.basicConfig(filename="notification_worker.log", level=log.INFO,
                 format='%(asctime)s %(levelname)s %(message)s',
                 )
 
@@ -24,6 +24,9 @@ def worker():
         # Getting pending notifications
         log.info("Querying DB for pending notifications")
         notifications = data.select_untriggered()
+        if not len(notifications):
+            log.info("No pending notifications this time")
+
         for notification in notifications:
             n_id = notification["id"]
             book = notification["book"]
@@ -59,8 +62,6 @@ def worker():
                 # update notification in the db
                 notif = {"id": n_id, "triggered": when, "sid": sid}
                 data.update(notif)
-        else:
-            log.info("No pending notifications this time")
 
         time.sleep(daemon_config["wait_minutes"]*60)
 
