@@ -6,7 +6,7 @@ PySocks==1.6.7
 pytz==2017.3
 PyYAML==5.4
 -e git+https://github.com/daoliveira/quadriga.git@7feeb7e5f86700aa6213dbc164ddeedaa235e76e#egg=quadriga
-requests==2.18.4
+requests==2.20.0
 six==1.11.0
 twilio==6.9.0
 urllib3==1.24.2
